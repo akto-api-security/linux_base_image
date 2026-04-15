@@ -60,7 +60,7 @@ RUN wget -q -O /tmp/chromedriver-linux64.zip "https://storage.googleapis.com/chr
     ln -sf /opt/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
 
 # Copy your JAR file
-COPY target/crawler-1.0-SNAPSHOT.jar /app/app.jar
+COPY target/crawler-2.1.1-SNAPSHOT.jar /app/app.jar
 
 EXPOSE 8088
 
