@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  aktojax:
+    build:
+      context: ./aktojax
+      dockerfile: Dockerfile
+    image: aktojax:local
+    env_file:
+      - .env
+    restart: always
+
+  akto-api-security-testing:
+    build:
+      context: ./mini-testing
+      dockerfile: Dockerfile
+    image: akto-api-security-testing:local
+    env_file:
+      - .env
+    restart: always
+
+  akto-api-security-puppeteer-replay:
+    build:
+      context: ./puppeteer
+      dockerfile: Dockerfile
+    image: akto-puppeteer:local
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - .env
+    labels:
+      com.centurylinklabs.watchtower.enable: "false"
